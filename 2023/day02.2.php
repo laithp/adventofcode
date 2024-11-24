@@ -36,24 +36,28 @@ function extract_game_data($game_data) {
 
 function process_game_data($game_data){
     
-    $pass = true;
-    foreach($game_data as $draw){
-        if(@$draw["red"]<=12 && @$draw["green"]<=13 && @$draw["blue"]<=14){
-            //GNDN
-        }else{
-            $pass =  false;
-        }
-    }
-    return $pass;
-}
 
+    $maxes = array("red"=>null,"green"=>null,"blue"=>null);
+    foreach($game_data as $draw){
+        if(isset($draw["red"]) && $maxes["red"]<$draw["red"]){
+            $maxes["red"]=$draw["red"];
+        };
+        if(isset($draw["green"]) && $maxes["green"]<$draw["green"]){
+            $maxes["green"]=$draw["green"];
+        };
+        if(isset($draw["blue"]) && $maxes["blue"]<$draw["blue"]){
+            $maxes["blue"]=$draw["blue"];
+        };
+    }
+    $power = $maxes["red"]*$maxes["green"]*$maxes["blue"];
+
+    return $power;
+}
 
 $total = 0;
 foreach($game_data_raw as $game_data){
     $gde = extract_game_data($game_data);
-    if(process_game_data($gde["draws"])){
-        $total += $gde["number"];
-    }
+    $total += process_game_data($gde["draws"]);
 }
 
 echo $total;
