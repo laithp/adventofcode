@@ -26,12 +26,16 @@ foreach ($locations_raw as $row) {
 }
 //echo count($left_list)." - ".count($right_list);
 
+sort($left_list); //forgot the obvious and hadn't sorted the lists
+sort($right_list);
+
 //itterate and calculate total distance
 $total_distance = 0;
 foreach ($left_list as $index=>$left_location_id) {
     $right_location_id = $right_list[$index];
-    $distance = abs($left_location_id-$right_location_id); //note some distances are - so abs()
-    //echo $distance."\n";
+    //$distance = $left_location_id-$right_location_id; 
+    //note some distances are - so abs()
+    $distance = abs($left_location_id-$right_location_id);
     $total_distance +=$distance;
 }
 
