@@ -37,14 +37,16 @@ echo "1st * ";
                     if($fail_total<2){
                         continue; 
                     }
-                    
-                }
-                if (abs($dif)<1 || abs($dif)>3) {
+                    echo $dif." * ";
+
+                }elseif (abs($dif)<1 || abs($dif)>3) {
                     //$passed = false;
                     $fail_total++; 
                     if($fail_total<2){
                         continue; 
                     }
+                    echo $dif." * ";
+
                 }
             } elseif ($dif>0) {
 echo '+';
@@ -56,13 +58,15 @@ echo '+';
                     if($fail_total<2){
                         continue; 
                     }
-                }
-                if ($dif<1 || $dif>3) {
+                    echo $dif." * ";
+
+                }elseif ($dif<1 || $dif>3) {
                     //$passed = false;
                     $fail_total++;
                     if($fail_total<2){
                         continue; 
                     }
+                    echo $dif." * ";
                 }
             }else{
                 //$passed = false;
@@ -70,8 +74,8 @@ echo '+';
                 if($fail_total<2){
                     continue; 
                 }
+                echo $dif." * ";
             }
-echo $dif." * ";
             //if($fail_total<2){
                 $last = $reading;        
             //}
