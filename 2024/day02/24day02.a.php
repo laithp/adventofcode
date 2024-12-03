@@ -11,7 +11,7 @@ $data_raw = file(__DIR__ . '\24day02.dat');
 
 $safe_tally = 0;
 foreach($data_raw as  $ind => $row){
-    //echo $ind.": ";
+//echo $ind.": ";
 
     $report_dat = explode(" ", trim($row));
     //var_dump($report_dat);
@@ -22,7 +22,7 @@ foreach($data_raw as  $ind => $row){
     foreach($report_dat as $reading){
         if($last===null){ 
             $last = $reading;
-            //echo "1st * ";
+//echo "1st * ";
             continue; 
         }else{
             $dif = $last - $reading;
@@ -32,26 +32,28 @@ foreach($data_raw as  $ind => $row){
                 }elseif($ascdec=='asc'){
                     $passed = false;
                 }
-                if (abs($dif)<1 && abs($dif)>3) {
+                if (abs($dif)<1 || abs($dif)>3) {
                     $passed = false; 
                 }
             } elseif ($dif>0) {
-                //echo '+';
+//echo '+';
                 if ($ascdec===null) { 
                     $ascdec='asc'; 
                 }elseif($ascdec=='dec'){
                     $passed = false;
                 }
-                if ($dif<1 && $dif>3) {
+                if ($dif<1 || $dif>3) {
                     $passed = false;
                 }
+            }else{
+                $passed = false;
             }
-            //echo $dif." * ";
+//echo $dif." * ";
             $last = $reading;
         }
     
     }
-    //echo " == ".$passed."\n";
+//echo " == ".$passed."\n";
     if($passed){
         $safe_tally++;
     }
