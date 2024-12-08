@@ -59,6 +59,6 @@ foreach($data_raw as  $ind => $row){
     }
 
 } 
-echo $safe_tally;
+echo $safe_tally; // solution == 236
 
 
